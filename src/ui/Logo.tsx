@@ -1,3 +1,4 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
 
@@ -7,7 +8,7 @@ const sizes = {
     width: auto;
   `,
   small: css`
-    height: 48px;
+    height: 32px;
     width: auto;
   `,
 };
@@ -30,12 +31,12 @@ type LogoProps = {
   size?: "normal" | "small";
 };
 
-function Logo({ size }: LogoProps) {
+const Logo: React.FC<LogoProps> = ({ size }) => {
   return (
     <Container to="/" size={size}>
       <img src="/images/logo.png" alt="Plane traveling around the world" />
     </Container>
   );
-}
+};
 
 export default Logo;

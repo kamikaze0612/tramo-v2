@@ -1,3 +1,4 @@
+import React from "react";
 import { Outlet } from "react-router-dom";
 
 import Header from "./Header";
@@ -10,7 +11,7 @@ const StyledLayout = styled.div`
   grid-template-rows: 80px 1fr auto;
 `;
 
-function Layout() {
+const Layout: React.FC = () => {
   return (
     <StyledLayout>
       <Header />
@@ -20,6 +21,6 @@ function Layout() {
       <Footer />
     </StyledLayout>
   );
-}
+};
 
 export default Layout;

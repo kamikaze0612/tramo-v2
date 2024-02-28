@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
@@ -5,12 +6,14 @@ const StyledFooter = styled.footer`
   flex-direction: column;
   gap: 1.6rem;
   padding: 2.4rem 4.8rem;
-  background-color: grey;
+  background-color: var(--color-bg-white);
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
 `;
 
 const Copyright = styled.p`
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
+  font-weight: 600;
 `;
 
 const Author = styled.p`
@@ -18,13 +21,15 @@ const Author = styled.p`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.2rem;
+  gap: 0.8rem;
   font-size: 1.6rem;
+  color: var(--color-text-secondary);
 `;
 
 const GithubLink = styled.a`
   &:visited,
   &:link {
+    font-weight: 600;
     text-decoration: none;
     color: currentColor;
     display: inline-block;
@@ -36,11 +41,11 @@ const GithubLink = styled.a`
   }
 `;
 
-function Footer() {
+const Footer: React.FC = () => {
   return (
     <StyledFooter>
       <Copyright>
-        &copy; 2024 Buyantogtokh Bekhbayar. All rights reserved
+        &copy; 2024 Buyantogtokh Bekhbayar, All rights reserved.
       </Copyright>
       <Author>
         Designed & coded by{" "}
@@ -50,6 +55,6 @@ function Footer() {
       </Author>
     </StyledFooter>
   );
-}
+};
 
 export default Footer;

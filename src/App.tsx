@@ -1,3 +1,4 @@
+import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import GlobalStyles from "./styles/GlobalStyles";
@@ -8,7 +9,7 @@ import Login from "./features/auth/Login";
 import Signup from "./features/auth/Signup";
 import Contact from "./ui/Contact";
 
-function App() {
+const App: React.FC = () => {
   const router = createBrowserRouter([
     {
       path: "/",
@@ -45,6 +46,6 @@ function App() {
       <RouterProvider router={router} />
     </>
   );
-}
+};
 
 export default App;

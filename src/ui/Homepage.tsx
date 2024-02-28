@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 const StyledHomepage = styled.section`
@@ -11,12 +12,12 @@ const Heading = styled.h1`
   font-size: 4.4rem;
 `;
 
-function Homepage() {
+const Homepage: React.FC = () => {
   return (
     <StyledHomepage>
       <Heading>Hello</Heading>
     </StyledHomepage>
   );
-}
+};
 
 export default Homepage;
