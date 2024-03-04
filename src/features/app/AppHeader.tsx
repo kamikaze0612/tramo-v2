@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import Logo from "../../ui/Logo";
 
@@ -8,11 +9,15 @@ const StyledAppHeader = styled.header`
   display: flex;
   align-items: center;
   background-color: var(--color-bg-white);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
   gap: 1.2rem;
+  z-index: 999;
 `;
 
-const Title = styled.h2`
+const Title = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
   font-size: 2rem;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -22,7 +27,7 @@ const AppHeader: React.FC = () => {
   return (
     <StyledAppHeader>
       <Logo size="small" />
-      <Title>tramo</Title>
+      <Title to="/">tramo</Title>
     </StyledAppHeader>
   );
 };

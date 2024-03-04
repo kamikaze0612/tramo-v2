@@ -7,7 +7,7 @@ const StyledFooter = styled.footer`
   gap: 1.6rem;
   padding: 2.4rem 4.8rem;
   background-color: var(--color-bg-white);
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm-invert);
 `;
 
 const Copyright = styled.p`

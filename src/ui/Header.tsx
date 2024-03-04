@@ -9,7 +9,7 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   background-color: var(--color-bg-white);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-md);
   position: relative;
 `;
 
