@@ -2,8 +2,10 @@ import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import styled from "styled-components";
 import "leaflet/dist/leaflet.css";
-import Button from "../../ui/Button";
 import { LocateFixed } from "lucide-react";
+
+import Button from "../../ui/Button";
+import { Location } from "../../models/location";
 
 const Container = styled.section`
   width: 100%;
@@ -32,7 +34,11 @@ const LocatorButton = styled(Button)`
   z-index: 999;
 `;
 
-const Map: React.FC = () => {
+type MapProps = {
+  locations: Location[];
+};
+
+const Map: React.FC<MapProps> = ({ locations }) => {
   return (
     <Container>
       <CustomMapContainer
@@ -44,19 +50,16 @@ const Map: React.FC = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
-        <Marker position={[35.67, 139.69]}>
-          <Popup>
-            <City>Tokyo</City>
-            <Country>Japan</Country>
-          </Popup>
-        </Marker>
-
-        <Marker position={[38.723, 139.83]}>
-          <Popup>
-            <City>Tsuruoka</City>
-            <Country>Japan</Country>
-          </Popup>
-        </Marker>
+        {locations.map((location) => (
+          <Marker position={[location.position.lat, location.position.lng]}>
+            <Popup>
+              <City>{location.cityName}</City>
+              <Country>
+                {location.countryName} {location.emoji}
+              </Country>
+            </Popup>
+          </Marker>
+        ))}
       </CustomMapContainer>
 
       <LocatorButton>
