@@ -9,8 +9,12 @@ const GlobalStyles = createGlobalStyle`
       --color-text-white: #f8f9fa;
 
       --color-bg-white: #fff;
+      --color-bg-white--1: #f1f3f5;
       --color-bg-black: #212529;
       --color-bg-red: #fa5252;
+
+      --color-border-white: #f1f3f5;
+      --color-border-dark: #495057;
     }
 
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);

@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ButtonsBox = styled.div`
@@ -15,14 +16,28 @@ const Button = styled.span`
   padding: 0.8rem 1.2rem;
   border-radius: 50px;
   z-index: 10;
+  color: inherit;
   cursor: pointer;
 `;
 
 const AppControls: React.FC = () => {
+  const navigate = useNavigate();
+  const route = useLocation();
+
   return (
-    <ButtonsBox onClick={(e) => console.log(e.target)}>
-      <Button className="tab--active">Cities</Button>
-      <Button>Countries</Button>
+    <ButtonsBox id="controls-box">
+      <Button
+        onClick={() => navigate("locations")}
+        className={route.pathname.includes("locations") ? "tab--active" : ""}
+      >
+        Cities
+      </Button>
+      <Button
+        onClick={() => navigate("countries")}
+        className={route.pathname.includes("countries") ? "tab--active" : ""}
+      >
+        Countries
+      </Button>
     </ButtonsBox>
   );
 };

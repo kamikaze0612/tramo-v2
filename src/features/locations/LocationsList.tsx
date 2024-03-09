@@ -1,17 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
 
 import LocationItem from "./LocationItem";
 import { RootState } from "../../store";
-
-const StyledLocationsList = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
-  width: 100%;
-`;
+import List from "../../ui/List";
 
 const LocationsList: React.FC = () => {
   const locations = useSelector(
@@ -19,11 +11,11 @@ const LocationsList: React.FC = () => {
   );
 
   return (
-    <StyledLocationsList>
+    <List>
       {locations.map((location) => (
         <LocationItem key={location.id} location={location} />
       ))}
-    </StyledLocationsList>
+    </List>
   );
 };
 

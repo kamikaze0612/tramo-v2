@@ -12,3 +12,9 @@ export type Location = {
   };
   cityId: string;
 };
+
+export type Country = {
+  countryName: string;
+  emoji: string;
+  visitedLocationNum: number;
+};

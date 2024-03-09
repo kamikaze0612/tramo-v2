@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { Location } from "../../models/types";
+import { Location } from "../../types";
 
 export type LocationState = {
   locations: Location[];

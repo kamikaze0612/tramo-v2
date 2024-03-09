@@ -13,6 +13,7 @@ import Login from "./features/auth/Login";
 import Signup from "./features/auth/Signup";
 import Contact from "./ui/Contact";
 import LocationsList from "./features/locations/LocationsList";
+import CountriesList from "./features/countries/CountriesList";
 
 const App: React.FC = () => {
   const router = createBrowserRouter([
@@ -50,6 +51,10 @@ const App: React.FC = () => {
         {
           path: "locations",
           element: <LocationsList />,
+        },
+        {
+          path: "countries",
+          element: <CountriesList />,
         },
       ],
     },

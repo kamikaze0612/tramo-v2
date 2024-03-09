@@ -33,6 +33,11 @@ const LocatorButton = styled(Button)`
   left: 50%;
   transform: translateX(-50%);
   z-index: 999;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--color-bg-white--1);
+  }
 `;
 
 const Map: React.FC = () => {
@@ -49,7 +54,7 @@ const Map: React.FC = () => {
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+          url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png"
         />
         {locations.map((location) => (
           <Marker
