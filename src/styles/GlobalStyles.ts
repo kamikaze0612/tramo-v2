@@ -15,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
 
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.08);
     --shadow-sm-invert: 0 -2px 4px rgba(0, 0, 0, 0.05);
   }
 

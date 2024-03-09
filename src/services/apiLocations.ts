@@ -1,6 +1,6 @@
 import supabase from "./supabase";
 
-import { Location } from "../models/location";
+import { Location } from "../models/types";
 
 export async function getLocations() {
   const { data: locations, error } = await supabase.from("cities").select("*");

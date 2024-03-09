@@ -7,6 +7,7 @@ const MainAppContainer = styled.section`
   background-color: #f8f9fa;
   padding: 2.4rem 4.8rem;
   display: flex;
+  gap: 2.4rem;
   flex-direction: column;
   align-items: center;
 `;

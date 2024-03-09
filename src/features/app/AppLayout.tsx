@@ -6,7 +6,9 @@ import Map from "./Map";
 import AppHeader from "./AppHeader";
 import AppFooter from "./AppFooter";
 import MainApp from "./MainApp";
-import { useLocations } from "./useLocations";
+import { getLocations } from "../../services/apiLocations";
+import { store } from "../../store";
+import { loadLocations } from "../locations/locationSlice";
 
 const Container = styled.div`
   display: grid;
@@ -21,10 +23,6 @@ const AppBox = styled.div`
 `;
 
 const AppLayout: React.FC = () => {
-  const { locations, isLoading } = useLocations();
-
-  if (isLoading) return <p>Loading...</p>;
-
   return (
     <Container>
       <AppBox>
@@ -34,9 +32,16 @@ const AppLayout: React.FC = () => {
         </MainApp>
         <AppFooter />
       </AppBox>
-      <Map locations={locations!} />
+      <Map />
     </Container>
   );
 };
+
+export async function loader() {
+  const locations = await getLocations();
+  store.dispatch(loadLocations(locations));
+
+  return locations;
+}
 
 export default AppLayout;

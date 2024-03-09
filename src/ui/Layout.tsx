@@ -1,9 +1,10 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 
 import Header from "./Header";
 import Footer from "./Footer";
 import styled from "styled-components";
+import Loader from "./Loader";
 
 const StyledLayout = styled.div`
   height: 100vh;
@@ -12,6 +13,10 @@ const StyledLayout = styled.div`
 `;
 
 const Layout: React.FC = () => {
+  const navigation = useNavigation();
+
+  if (navigation.state === "loading") return <Loader />;
+
   return (
     <StyledLayout>
       <Header />

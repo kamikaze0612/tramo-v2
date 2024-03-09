@@ -1,11 +1,12 @@
 import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import styled from "styled-components";
-import "leaflet/dist/leaflet.css";
 import { LocateFixed } from "lucide-react";
+import "leaflet/dist/leaflet.css";
 
 import Button from "../../ui/Button";
-import { Location } from "../../models/location";
+import { RootState } from "../../store";
+import { useSelector } from "react-redux";
 
 const Container = styled.section`
   width: 100%;
@@ -34,11 +35,11 @@ const LocatorButton = styled(Button)`
   z-index: 999;
 `;
 
-type MapProps = {
-  locations: Location[];
-};
+const Map: React.FC = () => {
+  const locations = useSelector(
+    (state: RootState) => state.locations.locations
+  );
 
-const Map: React.FC<MapProps> = ({ locations }) => {
   return (
     <Container>
       <CustomMapContainer
@@ -51,7 +52,10 @@ const Map: React.FC<MapProps> = ({ locations }) => {
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
         {locations.map((location) => (
-          <Marker position={[location.position.lat, location.position.lng]}>
+          <Marker
+            key={location.id}
+            position={[location.position.lat, location.position.lng]}
+          >
             <Popup>
               <City>{location.cityName}</City>
               <Country>

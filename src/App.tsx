@@ -1,23 +1,18 @@
 import React from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 
 import GlobalStyles from "./styles/GlobalStyles";
 import Homepage from "./ui/Homepage";
 import Layout from "./ui/Layout";
-import AppLayout from "./features/app/AppLayout";
+import AppLayout, { loader as appLoader } from "./features/app/AppLayout";
 import Login from "./features/auth/Login";
 import Signup from "./features/auth/Signup";
 import Contact from "./ui/Contact";
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 0,
-    },
-  },
-});
+import LocationsList from "./features/locations/LocationsList";
 
 const App: React.FC = () => {
   const router = createBrowserRouter([
@@ -46,16 +41,26 @@ const App: React.FC = () => {
     {
       path: "/app",
       element: <AppLayout />,
-      children: [],
+      loader: appLoader,
+      children: [
+        {
+          index: true,
+          element: <Navigate to="locations" replace />,
+        },
+        {
+          path: "locations",
+          element: <LocationsList />,
+        },
+      ],
     },
   ]);
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <GlobalStyles />
-      <ReactQueryDevtools initialIsOpen={false} />
+
       <RouterProvider router={router} />
-    </QueryClientProvider>
+    </>
   );
 };
 
