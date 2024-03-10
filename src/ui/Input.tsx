@@ -1,7 +1,6 @@
 import React from "react";
-import { UseFormRegister } from "react-hook-form";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 import styled from "styled-components";
-import { AddLocationFormData } from "../types";
 
 const StyledInput = styled.input`
   font-size: 1.8rem;
@@ -30,19 +29,19 @@ const Tag = styled.span`
 `;
 
 type InputProps = {
-  id: "location" | "notes" | "date";
+  id: string;
   placeholder?: string;
   type?: string;
-  register: UseFormRegister<AddLocationFormData>;
   tag?: string;
+  register: UseFormRegister<FieldValues>;
 };
 
 const Input: React.FC<InputProps> = ({
   id,
   type = "text",
   placeholder,
-  register,
   tag,
+  register,
 }) => {
   return (
     <>
@@ -50,9 +49,7 @@ const Input: React.FC<InputProps> = ({
         type={type}
         id={id}
         placeholder={placeholder}
-        {...register(id, {
-          required: "This input is required",
-        })}
+        {...register(id, { required: "This field is required" })}
       />
       <Tag>{tag}</Tag>
     </>

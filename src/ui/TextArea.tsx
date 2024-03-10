@@ -1,4 +1,5 @@
 import React from "react";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 import styled from "styled-components";
 
 const StyledTextarea = styled.textarea`
@@ -25,6 +26,7 @@ const StyledTextarea = styled.textarea`
 type TextAreaProps = {
   id: string;
   placeholder?: string;
+  register: UseFormRegister<FieldValues>;
 };
 
 const TextArea: React.FC<TextAreaProps> = ({ id, placeholder }) => {

@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { FieldError } from "react-hook-form";
 import styled from "styled-components";
 
 const Row = styled.div`
@@ -8,6 +7,7 @@ const Row = styled.div`
   gap: 1.6rem;
   border-bottom: 2px solid var(--color-border-white);
   position: relative;
+  padding-bottom: 2.4rem;
 `;
 
 const Label = styled.label`
@@ -15,24 +15,17 @@ const Label = styled.label`
   font-weight: 600;
 `;
 
-const Error = styled.p`
-  font-size: 1.4rem;
-  color: var(--color-text-red);
-`;
-
 type FormRowProps = {
   label: string;
   id: string;
-  error: FieldError | undefined;
   children: ReactNode;
 };
 
-const FormRow: React.FC<FormRowProps> = ({ label, id, children, error }) => {
+const FormRow: React.FC<FormRowProps> = ({ label, id, children }) => {
   return (
     <Row>
       <Label htmlFor={id}>{label}</Label>
       {children}
-      <Error>{error?.message}</Error>
     </Row>
   );
 };

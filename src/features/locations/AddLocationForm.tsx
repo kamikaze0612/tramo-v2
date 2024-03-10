@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 
 import { useUrlPosition } from "../../hooks/useUrlPosition";
 import { REVERSE_GEOCODING_URL } from "../../utils/constants";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
-import { AddLocationFormData, LocationData } from "../../types";
+import { LocationData } from "../../types";
 import TextArea from "../../ui/TextArea";
 import Button from "../../ui/Button";
 import { convertCountryCodeToEmoji } from "../../utils/helpers";
@@ -30,6 +30,11 @@ const ButtonsBox = styled.div`
   gap: 1.6rem;
 `;
 
+const Error = styled.p`
+  font-size: 1.4rem;
+  color: var(--color-text-red);
+`;
+
 const AddLocationForm: React.FC = () => {
   const [geocodingError, setGeocodingError] = useState("");
   const [countryEmoji, setCountryEmoji] = useState("");
@@ -40,7 +45,7 @@ const AddLocationForm: React.FC = () => {
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm<AddLocationFormData>({
+  } = useForm<FieldValues>({
     defaultValues: {
       location: "",
       date: new Date(),
@@ -84,7 +89,7 @@ const AddLocationForm: React.FC = () => {
   if (isLoading) return <SmallLoader />;
   if (geocodingError) return <p>ERROR</p>;
 
-  const onSubmit: SubmitHandler<AddLocationFormData> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
   };
 
@@ -94,25 +99,26 @@ const AddLocationForm: React.FC = () => {
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
-      <FormRow label="Location name" id="location" error={errors?.location}>
+      <FormRow label="Location name" id="location">
         <Input
           placeholder="Location name"
           id="location"
-          register={register}
           tag={countryEmoji}
+          register={register}
         />
+        {errors && <Error>{errors.root?.message}</Error>}
       </FormRow>
 
-      <FormRow label="Visited date" id="date" error={errors?.date}>
-        <Input id="date" register={register} type="date" />
+      <FormRow label="Visited date" id="date">
+        <Input id="date" type="date" register={register} />
       </FormRow>
 
-      <FormRow
-        label="Anything about your trip?"
-        id="notes"
-        error={errors?.notes}
-      >
-        <TextArea placeholder="Beach was wonderful" id="notes" />
+      <FormRow label="Anything about your trip?" id="notes">
+        <TextArea
+          placeholder="Beach was wonderful"
+          id="notes"
+          register={register}
+        />
       </FormRow>
 
       <ButtonsBox>
