@@ -7,11 +7,13 @@ const GlobalStyles = createGlobalStyle`
       --color-text-secondary: #495057;
       --color-text-tertiary: #868e96;
       --color-text-white: #f8f9fa;
+      --color-text-red: #ff6b6b;
 
       --color-bg-white: #fff;
       --color-bg-white--1: #f1f3f5;
       --color-bg-black: #212529;
       --color-bg-red: #fa5252;
+      --color-bg-red--1: #f03e3e;
 
       --color-border-white: #f1f3f5;
       --color-border-dark: #495057;
@@ -43,6 +45,11 @@ const GlobalStyles = createGlobalStyle`
 
     /* For theme switching */
     transition: background-color 0.3s, border 0.3s;
+  }
+
+  button:focus,
+  input:focus {
+    outline: none;
   }
   
   a.active:not(:has(img)) {

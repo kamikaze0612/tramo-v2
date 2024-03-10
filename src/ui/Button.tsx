@@ -15,7 +15,6 @@ const sizes = {
   normal: css`
     font-size: 1.6rem;
     padding: 1.6rem 2.4rem;
-    border: 1px solid var(--color-bg-black);
   `,
 };
 
@@ -23,6 +22,11 @@ const variations = {
   primary: css`
     background-color: var(--color-bg-white);
     color: var(--color-text-primary);
+    border: 1px solid var(--color-bg-black);
+
+    &:hover {
+      background-color: var(--color-bg-white--1);
+    }
   `,
 
   secondary: css`
@@ -33,6 +37,10 @@ const variations = {
   danger: css`
     background-color: var(--color-bg-red);
     color: #fff5f5;
+
+    &:hover {
+      background-color: var(--color-bg-red--1);
+    }
   `,
 };
 
@@ -45,6 +53,7 @@ const Button = styled.button<ButtonProps>`
   border-radius: 4px;
   text-transform: uppercase;
   font-weight: 700;
+  transition: background-color 0.3s, color 0.3s;
 
   ${(props) => sizes[props.size!]}
   ${(props) => variations[props.variant!]}

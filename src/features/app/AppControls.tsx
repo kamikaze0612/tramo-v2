@@ -18,6 +18,10 @@ const Button = styled.span`
   z-index: 10;
   color: inherit;
   cursor: pointer;
+
+  &:hover {
+    color: var(--color-text-tertiary);
+  }
 `;
 
 const AppControls: React.FC = () => {

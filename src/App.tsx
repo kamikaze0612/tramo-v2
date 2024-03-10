@@ -14,6 +14,9 @@ import Signup from "./features/auth/Signup";
 import Contact from "./ui/Contact";
 import LocationsList from "./features/locations/LocationsList";
 import CountriesList from "./features/countries/CountriesList";
+import AddLocationForm from "./features/locations/AddLocationForm";
+import { Toaster } from "react-hot-toast";
+import LocationDetails from "./features/locations/LocationDetails";
 
 const App: React.FC = () => {
   const router = createBrowserRouter([
@@ -53,8 +56,16 @@ const App: React.FC = () => {
           element: <LocationsList />,
         },
         {
+          path: "locations/:id",
+          element: <LocationDetails />,
+        },
+        {
           path: "countries",
           element: <CountriesList />,
+        },
+        {
+          path: "form",
+          element: <AddLocationForm />,
         },
       ],
     },
@@ -63,7 +74,23 @@ const App: React.FC = () => {
   return (
     <>
       <GlobalStyles />
-
+      <Toaster
+        toastOptions={{
+          style: {
+            backgroundColor: "var(--color-bg-white)",
+            color: "var(--color-text-black)",
+            fontSize: "1.6rem",
+            padding: "1.2rem 1.6rem",
+          },
+          success: {
+            duration: 5000,
+          },
+          error: {
+            duration: 3000,
+          },
+        }}
+        position="top-center"
+      />
       <RouterProvider router={router} />
     </>
   );

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Location } from "../../types";
 import { format } from "date-fns";
 import ListItem from "../../ui/ListItem";
+import { useNavigate } from "react-router-dom";
 
 const StyledLocationItem = styled(ListItem)`
   display: flex;
@@ -65,8 +66,16 @@ type LocationItemProps = {
 };
 
 const LocationItem: React.FC<LocationItemProps> = ({ location }) => {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate(
+      `${location.id}/?lat=${location.position.lat}&lng=${location.position.lng}`
+    );
+  }
+
   return (
-    <StyledLocationItem>
+    <StyledLocationItem onClick={handleClick}>
       <LocationDetails>
         <CityName>
           <CountryFlag>{location.emoji}</CountryFlag>
