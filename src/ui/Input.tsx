@@ -1,5 +1,5 @@
-import React from "react";
-import { FieldValues, UseFormRegister } from "react-hook-form";
+import React, { ReactNode } from "react";
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import styled from "styled-components";
 
 const StyledInput = styled.input`
@@ -28,11 +28,18 @@ const Tag = styled.span`
   color: black;
 `;
 
+const Error = styled.p`
+  font-size: 1.4rem;
+  color: var(--color-text-red);
+  font-weight: 500;
+`;
+
 type InputProps = {
   id: string;
   placeholder?: string;
   type?: string;
   tag?: string;
+  errors: FieldErrors;
   register: UseFormRegister<FieldValues>;
 };
 
@@ -41,6 +48,7 @@ const Input: React.FC<InputProps> = ({
   type = "text",
   placeholder,
   tag,
+  errors,
   register,
 }) => {
   return (
@@ -52,6 +60,7 @@ const Input: React.FC<InputProps> = ({
         {...register(id, { required: "This field is required" })}
       />
       <Tag>{tag}</Tag>
+      {errors[id] && <Error>{errors[id]!.message as ReactNode}</Error>}
     </>
   );
 };

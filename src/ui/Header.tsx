@@ -23,7 +23,12 @@ const Center = styled.span`
 function Header() {
   return (
     <StyledHeader>
-      <Navbar links={[{ label: "Contact", href: "/contact" }]} />
+      <Navbar
+        links={[
+          { label: "Contact", href: "/contact" },
+          { label: "How To Use?", href: "/how-to-use" },
+        ]}
+      />
       <Center>
         <Logo size="normal" />
       </Center>

@@ -1,5 +1,5 @@
-import React from "react";
-import { FieldValues, UseFormRegister } from "react-hook-form";
+import React, { ReactNode } from "react";
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import styled from "styled-components";
 
 const StyledTextarea = styled.textarea`
@@ -23,15 +23,35 @@ const StyledTextarea = styled.textarea`
   }
 `;
 
+const Error = styled.p`
+  font-size: 1.4rem;
+  color: var(--color-text-red);
+  font-weight: 500;
+`;
+
 type TextAreaProps = {
   id: string;
   placeholder?: string;
+  errors: FieldErrors;
   register: UseFormRegister<FieldValues>;
 };
 
-const TextArea: React.FC<TextAreaProps> = ({ id, placeholder }) => {
+const TextArea: React.FC<TextAreaProps> = ({
+  id,
+  placeholder,
+  register,
+  errors,
+}) => {
   return (
-    <StyledTextarea rows={3} id={id} placeholder={placeholder}></StyledTextarea>
+    <>
+      <StyledTextarea
+        rows={3}
+        id={id}
+        placeholder={placeholder}
+        {...register(id, { required: "This input is required" })}
+      ></StyledTextarea>
+      {errors[id] && <Error>{errors[id]?.message as ReactNode}</Error>}
+    </>
   );
 };
 

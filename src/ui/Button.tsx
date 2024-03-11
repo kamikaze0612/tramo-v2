@@ -32,6 +32,10 @@ const variations = {
   secondary: css`
     background-color: var(--color-bg-black);
     color: var(--color-text-white);
+
+    &:hover {
+      background-color: var(--color-bg-black--1);
+    }
   `,
 
   danger: css`

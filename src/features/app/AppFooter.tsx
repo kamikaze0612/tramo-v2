@@ -21,7 +21,7 @@ const Author = styled.p``;
 const AppFooter: React.FC = () => {
   return (
     <StyledAppFooter>
-      <Copyright>&copy; 2024 All rights reserved.</Copyright>
+      <Copyright>&copy; Tramo 2.0, 2024 All rights reserved.</Copyright>
       <Author>Designed & coded by Buyantogtokh B.</Author>
     </StyledAppFooter>
   );

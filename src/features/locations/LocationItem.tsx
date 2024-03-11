@@ -5,6 +5,10 @@ import { Location } from "../../types";
 import { format } from "date-fns";
 import ListItem from "../../ui/ListItem";
 import { useNavigate } from "react-router-dom";
+import { deleteLocation } from "../../services/apiLocations";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { removeLocation } from "./locationSlice";
 
 const StyledLocationItem = styled(ListItem)`
   display: flex;
@@ -67,11 +71,26 @@ type LocationItemProps = {
 
 const LocationItem: React.FC<LocationItemProps> = ({ location }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleClick() {
     navigate(
       `${location.id}/?lat=${location.position.lat}&lng=${location.position.lng}`
     );
+  }
+
+  function handleDelete(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.stopPropagation();
+
+    deleteLocation(location.id.toString())
+      .then(() => {
+        toast.success("Location deleted");
+        dispatch(removeLocation(location.id));
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Location could not be deleted");
+      });
   }
 
   return (
@@ -85,7 +104,7 @@ const LocationItem: React.FC<LocationItemProps> = ({ location }) => {
           {format(new Date(location.date), "MMMM dd, yyyy")}
         </VisitedDate>
       </LocationDetails>
-      <DeleteBtn>&times;</DeleteBtn>
+      <DeleteBtn onClick={handleDelete}>&times;</DeleteBtn>
     </StyledLocationItem>
   );
 };

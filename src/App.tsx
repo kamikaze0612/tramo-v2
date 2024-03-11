@@ -17,6 +17,7 @@ import CountriesList from "./features/countries/CountriesList";
 import AddLocationForm from "./features/locations/AddLocationForm";
 import { Toaster } from "react-hot-toast";
 import LocationDetails from "./features/locations/LocationDetails";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const App: React.FC = () => {
   const router = createBrowserRouter([
@@ -44,7 +45,11 @@ const App: React.FC = () => {
     },
     {
       path: "/app",
-      element: <AppLayout />,
+      element: (
+        <ProtectedRoute>
+          <AppLayout />
+        </ProtectedRoute>
+      ),
       loader: appLoader,
       children: [
         {
@@ -83,10 +88,10 @@ const App: React.FC = () => {
             padding: "1.2rem 1.6rem",
           },
           success: {
-            duration: 5000,
+            duration: 3000,
           },
           error: {
-            duration: 3000,
+            duration: 2000,
           },
         }}
         position="top-center"

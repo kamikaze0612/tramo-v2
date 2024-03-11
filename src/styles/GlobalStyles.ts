@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
       --color-bg-white: #fff;
       --color-bg-white--1: #f1f3f5;
       --color-bg-black: #212529;
+      --color-bg-black--1: #495057;
       --color-bg-red: #fa5252;
       --color-bg-red--1: #f03e3e;
 

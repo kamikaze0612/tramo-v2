@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
   return (
     <StyledFooter>
       <Copyright>
-        &copy; 2024 Buyantogtokh Bekhbayar, All rights reserved.
+        &copy; Tramo 2.0, 2024 Buyantogtokh Bekhbayar, All rights reserved.
       </Copyright>
       <Author>
         Designed & coded by{" "}

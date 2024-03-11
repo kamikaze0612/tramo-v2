@@ -13,6 +13,19 @@ export type Location = {
   cityId: string;
 };
 
+export type CreatedLocation = {
+  cityName: string;
+  countryName: string;
+  date: Date;
+  emoji: string;
+  notes: string;
+  position: {
+    lat: number;
+    lng: number;
+  };
+  cityId: string;
+};
+
 export type Country = {
   countryName: string;
   emoji: string;
@@ -68,4 +81,15 @@ export type LocationData = {
   postcode: string;
   plusCode: string;
   localityInfo: LocalityInfo;
+};
+
+export type UserData = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+export type UserLoginData = {
+  email: string;
+  password: string;
 };

@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
+import { v4 } from "uuid";
 
 import { useUrlPosition } from "../../hooks/useUrlPosition";
 import { REVERSE_GEOCODING_URL } from "../../utils/constants";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
-import { LocationData } from "../../types";
+import { CreatedLocation, LocationData } from "../../types";
 import TextArea from "../../ui/TextArea";
 import Button from "../../ui/Button";
 import { convertCountryCodeToEmoji } from "../../utils/helpers";
 import SmallLoader from "../../ui/SmallLoader";
+import { createLocation } from "../../services/apiLocations";
+import toast from "react-hot-toast";
 
-const StyledForm = styled.form`
+const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
@@ -30,15 +33,11 @@ const ButtonsBox = styled.div`
   gap: 1.6rem;
 `;
 
-const Error = styled.p`
-  font-size: 1.4rem;
-  color: var(--color-text-red);
-`;
-
 const AddLocationForm: React.FC = () => {
   const [geocodingError, setGeocodingError] = useState("");
   const [countryEmoji, setCountryEmoji] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [geocodingData, setGeocodingData] = useState<LocationData>();
 
   const {
     register,
@@ -73,7 +72,7 @@ const AddLocationForm: React.FC = () => {
         setValue("location", data.city);
         setCountryEmoji(convertCountryCodeToEmoji(data.countryCode));
 
-        console.log(data);
+        setGeocodingData(data);
       } catch (err) {
         setGeocodingError(
           "That doesn't seem to be a valid location, try it again 😉"
@@ -90,7 +89,30 @@ const AddLocationForm: React.FC = () => {
   if (geocodingError) return <p>ERROR</p>;
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    setIsLoading(true);
+    const newLocation: CreatedLocation = {
+      cityName: data.location,
+      countryName: geocodingData!.countryName,
+      date: new Date(data.date),
+      emoji: countryEmoji,
+      notes: data.notes,
+      position: {
+        lat: geocodingData!.latitude,
+        lng: geocodingData!.longitude,
+      },
+      cityId: v4(),
+    };
+
+    createLocation(newLocation)
+      .then(() => {
+        toast.success("New location created");
+        navigate("/app/locations");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Location could not be created");
+      })
+      .finally(() => setIsLoading(false));
   };
 
   function handleCancel() {
@@ -98,25 +120,26 @@ const AddLocationForm: React.FC = () => {
   }
 
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)}>
+    <StyledForm onSubmit={handleSubmit(onSubmit)} method="POST">
       <FormRow label="Location name" id="location">
         <Input
           placeholder="Location name"
           id="location"
           tag={countryEmoji}
+          errors={errors}
           register={register}
         />
-        {errors && <Error>{errors.root?.message}</Error>}
       </FormRow>
 
       <FormRow label="Visited date" id="date">
-        <Input id="date" type="date" register={register} />
+        <Input id="date" type="date" register={register} errors={errors} />
       </FormRow>
 
       <FormRow label="Anything about your trip?" id="notes">
         <TextArea
           placeholder="Beach was wonderful"
           id="notes"
+          errors={errors}
           register={register}
         />
       </FormRow>
