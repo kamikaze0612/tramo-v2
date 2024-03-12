@@ -7,6 +7,7 @@ import {
   useMap,
   useMapEvents,
 } from "react-leaflet";
+import L from "leaflet";
 import styled from "styled-components";
 import { LocateFixed } from "lucide-react";
 import "leaflet/dist/leaflet.css";
@@ -18,6 +19,19 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useUrlPosition } from "../../hooks/useUrlPosition";
 import { useGeolocation } from "../../hooks/useGeolocation";
+
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+
+// eslint-disable-next-line prefer-const
+let DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 const Container = styled.section`
   width: 100%;
