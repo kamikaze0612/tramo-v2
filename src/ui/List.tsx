@@ -8,7 +8,8 @@ const List = styled.ul`
   align-items: center;
   gap: 2.4rem;
   width: 100%;
-  overflow-y: auto;
+  height: 100%;
+  overflow: auto;
 `;
 
 export default List;

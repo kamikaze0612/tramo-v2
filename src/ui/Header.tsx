@@ -1,6 +1,10 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
 import Logo from "./Logo";
 import Navbar from "./Navbar";
+import { useEffect, useMemo, useState } from "react";
+import { getCurrentUser } from "../services/apiAuthentication";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -21,24 +25,39 @@ const Center = styled.span`
 `;
 
 function Header() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getCurrentUser()
+      .then((user) => {
+        if (user) {
+          setIsLoggedIn(true);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, [navigate]);
+
+  const links = useMemo(() => {
+    if (isLoggedIn) {
+      return [{ label: "App", href: "/app" }];
+    }
+    if (!isLoggedIn) {
+      return [
+        { label: "App", href: "/app" },
+        { label: "Log In", href: "/login" },
+        { label: "Sign Up", href: "/signup" },
+      ];
+    }
+  }, [isLoggedIn]);
+
   return (
     <StyledHeader>
-      <Navbar
-        links={[
-          { label: "Contact", href: "/contact" },
-          { label: "How To Use?", href: "/how-to-use" },
-        ]}
-      />
+      <Navbar links={[{ label: "How To Use?", href: "/how-to-use" }]} />
       <Center>
         <Logo size="normal" />
       </Center>
-      <Navbar
-        links={[
-          { label: "App", href: "/app" },
-          { label: "Log In", href: "/login" },
-          { label: "Sign Up", href: "/signup" },
-        ]}
-      />
+      <Navbar links={links!} />
     </StyledHeader>
   );
 }

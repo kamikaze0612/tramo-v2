@@ -11,14 +11,16 @@ import { store } from "../../store";
 import { loadLocations } from "../locations/locationSlice";
 
 const Container = styled.div`
+  height: 100vh;
   display: grid;
   grid-template-columns: 1fr 2fr;
 `;
 
 const AppBox = styled.div`
-  height: 100vh;
   display: grid;
-  grid-template-columns: auto;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: auto;
   grid-template-rows: auto 1fr auto;
 `;
 

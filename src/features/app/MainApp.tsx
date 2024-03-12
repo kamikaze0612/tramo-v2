@@ -10,6 +10,7 @@ const MainAppContainer = styled.section`
   gap: 2.4rem;
   flex-direction: column;
   align-items: center;
+  height: 100%;
 `;
 
 type MainAppProps = {

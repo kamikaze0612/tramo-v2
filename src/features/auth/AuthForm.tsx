@@ -77,6 +77,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
       password: "test1234",
     },
   });
+
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {

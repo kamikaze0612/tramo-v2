@@ -33,7 +33,7 @@ const Title = styled(Link)`
 `;
 
 const LogoutButton = styled.button`
-  border: none;
+  border: 1px solid var(--color-border-dark);
   cursor: pointer;
   background-color: var(--color-bg-white);
   color: inherit;
@@ -44,7 +44,7 @@ const LogoutButton = styled.button`
   gap: 8px;
   justify-content: center;
   align-items: center;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: 500;
 
   &:hover {
@@ -77,7 +77,7 @@ const AppHeader: React.FC = () => {
       </Box>
       <LogoutButton onClick={handleSignOut}>
         Log out
-        <LogOut />
+        <LogOut size={12} />
       </LogoutButton>
     </StyledAppHeader>
   );

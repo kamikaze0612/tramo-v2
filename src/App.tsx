@@ -11,13 +11,13 @@ import Layout from "./ui/Layout";
 import AppLayout, { loader as appLoader } from "./features/app/AppLayout";
 import Login from "./features/auth/Login";
 import Signup from "./features/auth/Signup";
-import Contact from "./ui/Contact";
 import LocationsList from "./features/locations/LocationsList";
 import CountriesList from "./features/countries/CountriesList";
 import AddLocationForm from "./features/locations/AddLocationForm";
 import { Toaster } from "react-hot-toast";
 import LocationDetails from "./features/locations/LocationDetails";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import UsageInstruction from "./ui/UsageInstruction";
 
 const App: React.FC = () => {
   const router = createBrowserRouter([
@@ -30,16 +30,16 @@ const App: React.FC = () => {
           element: <Homepage />,
         },
         {
-          path: "/login",
+          path: "login",
           element: <Login />,
         },
         {
-          path: "/signup",
+          path: "signup",
           element: <Signup />,
         },
         {
-          path: "/contact",
-          element: <Contact />,
+          path: "how-to-use",
+          element: <UsageInstruction />,
         },
       ],
     },

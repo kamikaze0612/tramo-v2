@@ -12,6 +12,7 @@ const StyledCountryItem = styled(ListItem)`
 const CountryName = styled.p`
   font-size: 1.8rem;
   font-weight: 600;
+  line-height: 1.5;
 `;
 
 const CountryFlag = styled.span`

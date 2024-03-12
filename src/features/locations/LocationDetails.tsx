@@ -16,8 +16,22 @@ const StyledDetails = styled.div`
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
+  gap: 3.2rem;
   align-items: flex-start;
+`;
+
+const Paragraph = styled.p`
+  font-size: 1.6rem;
+  color: var(--color-text-secondary);
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 2px;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid currentColor;
+  font-size: 1.6rem;
 `;
 
 const LocationDetails: React.FC = () => {
@@ -30,26 +44,28 @@ const LocationDetails: React.FC = () => {
   return (
     <StyledDetails>
       <Row label="City name">
-        <p>
+        <Paragraph>
           {location?.emoji} {location?.cityName}
-        </p>
+        </Paragraph>
       </Row>
 
       <Row label={`You went to ${location?.cityName} on`}>
-        <p>{format(new Date(location!.date), "EEEE, MMMM dd, yyyy")}</p>
+        <Paragraph>
+          {format(new Date(location!.date), "EEEE, MMMM dd, yyyy")}
+        </Paragraph>
       </Row>
 
       <Row label="Notes about trip">
-        <p>{location?.notes}</p>
+        <Paragraph>{location?.notes}</Paragraph>
       </Row>
 
       <Row label="See more about location">
-        <Link
+        <StyledLink
           to={`https://en.wikipedia.org/wiki/${location?.cityName}`}
           target="_blank"
         >
           Check out {location?.cityName} on Wikipedia &rarr;
-        </Link>
+        </StyledLink>
       </Row>
 
       <Button variant="secondary" size="small" onClick={() => navigate(-1)}>
