@@ -14,6 +14,20 @@ const Copyright = styled.p`
   text-align: center;
   font-size: 1.6rem;
   font-weight: 600;
+  line-height: 1.6;
+
+  & br {
+    display: none;
+
+    @media only screen and (max-width: 27em) {
+      display: block;
+    }
+  }
+
+  @media only screen and (max-width: 27em) {
+    font-size: 1.4rem;
+    line-height: 1.4;
+  }
 `;
 
 const Author = styled.p`
@@ -24,6 +38,10 @@ const Author = styled.p`
   gap: 0.8rem;
   font-size: 1.6rem;
   color: var(--color-text-secondary);
+
+  @media only screen and (max-width: 27em) {
+    font-size: 1.4rem;
+  }
 `;
 
 const GithubLink = styled.a`
@@ -45,7 +63,8 @@ const Footer: React.FC = () => {
   return (
     <StyledFooter>
       <Copyright>
-        &copy; Tramo 2.0, 2024 Buyantogtokh Bekhbayar, All rights reserved.
+        &copy; Tramo 2.0, 2024 Buyantogtokh Bekhbayar, <br /> All rights
+        reserved.
       </Copyright>
       <Author>
         Designed & coded by{" "}

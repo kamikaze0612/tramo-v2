@@ -18,6 +18,10 @@ const StyledDetails = styled.div`
   flex-direction: column;
   gap: 3.2rem;
   align-items: flex-start;
+
+  @media only screen and (max-width: 80em) {
+    width: 36rem;
+  }
 `;
 
 const Paragraph = styled.p`

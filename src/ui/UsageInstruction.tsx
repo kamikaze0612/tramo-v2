@@ -21,6 +21,19 @@ const Instructions = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 4.8rem;
+
+  @media only screen and (max-width: 64em) {
+    width: 92rem;
+  }
+
+  @media only screen and (max-width: 56.25em) {
+    width: 72rem;
+  }
+
+  @media only screen and (max-width: 27em) {
+    max-width: 34rem;
+    padding: 2.4rem 3.2rem;
+  }
 `;
 
 const Row = styled.li`
@@ -29,6 +42,15 @@ const Row = styled.li`
   grid-template-columns: 2fr 1fr;
   align-items: center;
   column-gap: 4.8rem;
+
+  @media only screen and (max-width: 27em) {
+    grid-template-columns: 1fr;
+    row-gap: 2.4rem;
+
+    & div:has(img) {
+      grid-row: 2;
+    }
+  }
 `;
 
 const TextBox = styled.div`
@@ -48,10 +70,22 @@ const Number = styled.span`
   justify-content: center;
   align-items: center;
   flex-basis: content;
+
+  @media only screen and (max-width: 27em) {
+    font-size: 2.4rem;
+  }
 `;
 
 const Text = styled.p`
   font-weight: 500;
+
+  @media only screen and (max-width: 56.25em) {
+    font-size: 1.4rem;
+  }
+
+  @media only screen and (max-width: 27em) {
+    font-size: 1.2rem;
+  }
 `;
 
 const ImageBox = styled.div`

@@ -16,12 +16,20 @@ const StyledHomepage = styled.section`
     url(/images/hero-back.jpg);
   background-position: center;
   background-size: cover;
+
+  @media only screen and (max-width: 27em) {
+    gap: 1.6rem;
+  }
 `;
 
 const Heading = styled.h1`
   font-size: 5.2rem;
   font-weight: 500;
   text-align: center;
+
+  @media only screen and (max-width: 27em) {
+    font-size: 3.6rem;
+  }
 `;
 
 const Bold = styled.b`
@@ -31,6 +39,10 @@ const Bold = styled.b`
 const Paragraph = styled.p`
   font-size: 2rem;
   color: var(--color-text-secondary);
+
+  @media only screen and (max-width: 27em) {
+    font-size: 1.6rem;
+  }
 `;
 
 const Homepage: React.FC = () => {

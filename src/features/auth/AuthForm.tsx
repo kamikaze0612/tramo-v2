@@ -29,6 +29,10 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
+
+  @media only screen and (max-width: 27em) {
+    width: 36rem;
+  }
 `;
 
 const BottomBox = styled.div`
@@ -56,6 +60,11 @@ const BottomText = styled(Link)`
 
   &:hover {
     color: var(--color-text-primary);
+  }
+
+  @media only screen and (max-width: 27em) {
+    font-size: 1.2rem;
+    width: max-content;
   }
 `;
 

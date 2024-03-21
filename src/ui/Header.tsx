@@ -5,6 +5,7 @@ import Logo from "./Logo";
 import Navbar from "./Navbar";
 import { useEffect, useMemo, useState } from "react";
 import { getCurrentUser } from "../services/apiAuthentication";
+import MobileNavbar from "./MobileNavbar";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -15,6 +16,11 @@ const StyledHeader = styled.header`
   background-color: var(--color-bg-white);
   box-shadow: var(--shadow-md);
   position: relative;
+
+  @media only screen and (max-width: 27em) {
+    justify-content: flex-end;
+    padding: 0 3.2rem;
+  }
 `;
 
 const Center = styled.span`
@@ -24,8 +30,29 @@ const Center = styled.span`
   transform: translate(-50%, -50%);
 `;
 
+const ToggleButton = styled.button`
+  padding: 8px 4px;
+  height: 32px;
+  width: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-white);
+  background-color: var(--color-bg-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 999;
+
+  & span {
+    height: 2px;
+    width: 100%;
+    display: block;
+    background-color: var(--color-bg-black--1);
+  }
+`;
+
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isToggled, setIsToggled] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,11 +80,27 @@ function Header() {
 
   return (
     <StyledHeader>
-      <Navbar links={[{ label: "How To Use?", href: "/how-to-use" }]} />
+      <Navbar links={[{ label: "How to use?", href: "/how-to-use" }]} />
       <Center>
         <Logo size="normal" />
       </Center>
       <Navbar links={links!} />
+      <ToggleButton onClick={() => setIsToggled((cur) => !cur)}>
+        <span />
+        <span />
+        <span />
+      </ToggleButton>
+
+      <MobileNavbar
+        isToggled={isToggled}
+        onClick={setIsToggled}
+        links={[
+          { label: "How to use?", href: "/how-to-use" },
+          { label: "App", href: "/app" },
+          { label: "Log In", href: "/login" },
+          { label: "Sign Up", href: "/signup" },
+        ]}
+      />
     </StyledHeader>
   );
 }

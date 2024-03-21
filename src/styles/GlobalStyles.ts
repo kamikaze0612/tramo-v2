@@ -36,6 +36,14 @@ const GlobalStyles = createGlobalStyle`
 
   html {
     font-size: 62.5%;
+
+    @media only screen and (max-width: 80em) {
+      font-size: 56.25%;
+    }
+
+    @media only screen and (max-width: 48em) {
+      font-size: 50%;
+    }
   }
 
   body {
@@ -75,6 +83,13 @@ const GlobalStyles = createGlobalStyle`
   span.tab--active {
     background-color: var(--color-bg-black);
     color: var(--color-text-white);
+  }
+
+  nav.show {
+    width: 100%;
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
   }
 `;
 

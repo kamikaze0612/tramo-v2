@@ -37,6 +37,12 @@ const Container = styled.section`
   width: 100%;
   height: 100vh;
   position: relative;
+
+  @media only screen and (max-width: 27em) {
+    width: auto;
+    height: auto;
+    max-height: 50vh;
+  }
 `;
 
 const CustomMapContainer = styled(MapContainer)`

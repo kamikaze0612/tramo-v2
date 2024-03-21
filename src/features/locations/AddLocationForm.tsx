@@ -25,6 +25,10 @@ const StyledForm = styled(Form)`
   border-radius: 8px;
   width: 40rem;
   box-shadow: var(--shadow-md);
+
+  @media only screen and (max-width: 80em) {
+    width: 36rem;
+  }
 `;
 
 const ButtonsBox = styled.div`

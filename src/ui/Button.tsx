@@ -8,13 +8,21 @@ type ButtonProps = {
 
 const sizes = {
   small: css`
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     padding: 1.2rem 1.6rem;
+
+    @media only screen and (max-width: 56.25em) {
+      font-size: 1.2rem;
+    }
   `,
 
   normal: css`
     font-size: 1.6rem;
     padding: 1.6rem 2.4rem;
+
+    @media only screen and (max-width: 56.25em) {
+      font-size: 1.4rem;
+    }
   `,
 };
 

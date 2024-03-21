@@ -2,6 +2,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+const StyledNavbar = styled.nav`
+  @media only screen and (max-width: 27em) {
+    display: none;
+  }
+`;
+
 const StyledNavList = styled.ul`
   display: flex;
   align-items: center;
@@ -9,7 +15,7 @@ const StyledNavList = styled.ul`
   list-style: none;
 `;
 
-const StyledLink = styled(NavLink)<NavLinkProps>`
+const StyledLink = styled(NavLink)`
   font-size: 1.6rem;
   text-decoration: none;
   color: inherit;
@@ -34,10 +40,6 @@ const StyledLink = styled(NavLink)<NavLinkProps>`
   }
 `;
 
-type NavLinkProps = {
-  label: string;
-};
-
 type Link = {
   label: string;
   href: string;
@@ -49,17 +51,15 @@ type NavbarProps = {
 
 const Navbar: React.FC<NavbarProps> = ({ links }) => {
   return (
-    <nav>
+    <StyledNavbar>
       <StyledNavList>
         {links.map((link) => (
           <li key={link.label}>
-            <StyledLink label={link.label} to={link.href}>
-              {link.label}
-            </StyledLink>
+            <StyledLink to={link.href}>{link.label}</StyledLink>
           </li>
         ))}
       </StyledNavList>
-    </nav>
+    </StyledNavbar>
   );
 };
 
