@@ -41,6 +41,11 @@ const ToggleButton = styled.button`
   flex-direction: column;
   justify-content: space-between;
   z-index: 999;
+  display: none;
+
+  @media only screen and (max-width: 27em) {
+    display: flex;
+  }
 
   & span {
     height: 2px;
